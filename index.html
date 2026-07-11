@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jake Leighton — Computational Scientist</title>
+<meta name="description" content="Jake Leighton — computational scientist at MD Anderson Cancer Center. Single-cell genomics, spatial transcriptomics, and AI for cancer evolution and metastasis.">
+
+<meta property="og:title" content="Jake Leighton — Computational Scientist">
+<meta property="og:description" content="Single-cell genomics, spatial transcriptomics, and AI for cancer evolution — and teaching computational biology in R.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jakeleighton.com">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#1a1d21;--ink-soft:#4a4f57;--ink-faint:#767c85;
+    --paper:#faf9f6;--paper-2:#f2f0ea;--line:#dcd8ce;
+    --accent:#2f5d50;--accent-soft:#e4ede9;--radius:3px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  .wrap{max-width:760px;margin:0 auto;padding:0 28px}
+
+  .topbar{display:flex;justify-content:space-between;align-items:center;padding:26px 0;border-bottom:1px solid var(--line)}
+  .topbar .mark{font-family:'Newsreader',serif;font-style:italic;font-size:17px}
+  .topbar nav{display:flex;gap:22px;font-size:14px}
+  .topbar nav a{color:var(--ink-soft);text-decoration:none;transition:color .15s}
+  .topbar nav a:hover{color:var(--accent)}
+
+  .hero{padding:76px 0 30px}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
+  h1{font-family:'Newsreader',Georgia,serif;font-weight:500;font-size:clamp(40px,7.5vw,66px);line-height:1.02;letter-spacing:-.02em;margin-bottom:24px}
+  h1 em{font-style:italic;color:var(--accent)}
+  .hero .lede{font-family:'Newsreader',serif;font-size:clamp(19px,2.4vw,23px);color:var(--ink-soft);max-width:60ch}
+  .hero-actions{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{font-size:14.5px;font-weight:500;text-decoration:none;padding:11px 20px;border-radius:var(--radius);transition:all .16s ease;display:inline-flex;align-items:center;gap:8px}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:#264c41}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink)}
+  .btn-ghost:hover{background:var(--paper-2);border-color:var(--ink-faint)}
+
+  section{padding:44px 0}
+  .sec-label{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:22px;display:flex;align-items:center;gap:14px}
+  .sec-label::after{content:"";flex:1;height:1px;background:var(--line)}
+  h2{font-family:'Newsreader',serif;font-weight:500;font-size:27px;letter-spacing:-.01em;margin-bottom:14px}
+  p.body{color:var(--ink-soft);font-size:16px;max-width:64ch}
+  p.body + p.body{margin-top:14px}
+  p.body a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)}
+  p.body a:hover{border-color:var(--accent)}
+
+  .areas{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .area{background:var(--paper);padding:24px 22px}
+  .area .num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);margin-bottom:10px}
+  .area h3{font-family:'Newsreader',serif;font-weight:500;font-size:19px;margin-bottom:7px}
+  .area p{font-size:14px;color:var(--ink-soft);line-height:1.55}
+
+  .timeline{border-top:1px solid var(--line)}
+  .tl-row{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:20px 4px;border-bottom:1px solid var(--line)}
+  .tl-when{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-faint);padding-top:3px}
+  .tl-what h3{font-weight:600;font-size:16px;letter-spacing:-.01em;margin-bottom:3px}
+  .tl-what .where{color:var(--accent);font-size:14.5px;margin-bottom:6px}
+  .tl-what p{font-size:14.5px;color:var(--ink-soft);line-height:1.55;max-width:60ch}
+
+  .pubs{border-top:1px solid var(--line)}
+  .pub{padding:18px 4px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:6px 20px;align-items:baseline}
+  .pub-title{font-size:15.5px;color:var(--ink);line-height:1.5}
+  .pub-title .role{color:var(--accent);font-weight:500}
+  .pub-venue{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-faint);white-space:nowrap;text-align:right}
+  .pub-venue .j{color:var(--accent)}
+
+  .facts{display:flex;flex-wrap:wrap;gap:10px}
+  .fact{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:8px 13px}
+  .fact strong{color:var(--accent);font-weight:500}
+
+  .offhours{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:28px 30px}
+  .offhours p{font-family:'Newsreader',serif;font-size:18px;color:var(--ink-soft);max-width:62ch;line-height:1.6}
+  .offhours em{color:var(--accent);font-style:italic}
+
+  .contact{display:flex;flex-wrap:wrap;gap:12px 10px;margin-top:6px}
+  .contact a{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-size:15px;font-weight:500;border:1px solid var(--line);border-radius:var(--radius);padding:11px 16px;transition:all .16s ease}
+  .contact a:hover{background:var(--accent-soft);border-color:var(--accent)}
+  .contact svg{width:17px;height:17px;color:var(--accent)}
+
+  footer{margin-top:40px;padding:32px 0 60px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px}
+  .foot-brand{font-family:'Newsreader',serif;font-style:italic;font-size:16px}
+  .foot-meta{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-faint)}
+
+  @media (max-width:600px){
+    .hero{padding:52px 0 20px}
+    .areas{grid-template-columns:1fr}
+    .tl-row{grid-template-columns:1fr;gap:6px}
+    .tl-when{padding-top:0}
+    .pub{grid-template-columns:1fr;gap:4px}
+    .pub-venue{text-align:left;white-space:normal}
+    .topbar nav{gap:16px}
+    section{padding:36px 0}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none !important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <span class="mark">Jake Leighton</span>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#path">Path</a>
+      <a href="#research">Research</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <header class="hero">
+    <div class="eyebrow">Computational Biologist &amp; Data Scientist · MD Anderson Cancer Center</div>
+    <h1>I build the computation<br>behind <em>cancer discovery.</em></h1>
+    <p class="lede">
+      I use single-cell genomics and artificial intelligence to study how cancer evolves and spreads — across breast, lung, and hematological disease — and I teach the next generation of scientists to do the same in R.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://leightonlab.com" target="_blank" rel="noopener">Explore the free course →</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+  </header>
+
+  <section id="work">
+    <div class="sec-label">What I work on</div>
+    <div class="areas">
+      <div class="area">
+        <div class="num">01</div>
+        <h3>Single-cell genomics</h3>
+        <p>scDNA, scRNA, and scATAC to reconstruct mutational and copy-number lineages — resolving how tumors evolve one cell at a time.</p>
+      </div>
+      <div class="area">
+        <div class="num">02</div>
+        <h3>Spatial transcriptomics</h3>
+        <p>Integrating spatial expression with digital pathology to read the tumor microenvironment in its native tissue context.</p>
+      </div>
+      <div class="area">
+        <div class="num">03</div>
+        <h3>AI for oncology</h3>
+        <p>Graph transformers, CNNs, and graph neural networks applied to phylogenetic and pathology data to predict metastasis and outcomes.</p>
+      </div>
+      <div class="area">
+        <div class="num">04</div>
+        <h3>Teaching &amp; open science</h3>
+        <p>A free video course, a division-wide computational training program, and a forthcoming R-based textbook in computational cancer biology.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">In brief</div>
+    <h2>A scientist who ships tools, and teaches.</h2>
+    <p class="body">
+      I'm a computational biologist and data scientist at MD Anderson Cancer Center, in the Department of Translational Molecular Pathology. I apply single-cell sequencing, spatial transcriptomics, AI modeling, and digital pathology to understand disease biology and identify precision biomarkers for new cancer therapies — and I lead computational training across the division, embedding bioinformatics support in faculty research and mentoring the next wave of fellows.
+    </p>
+    <p class="body">
+      I care as much about making these methods <em>learnable</em> as advancing them — which became <a href="https://leightonlab.com" target="_blank" rel="noopener">Leighton Lab</a>, a free course teaching computational cancer biology in R.
+    </p>
+  </section>
+
+  <section id="path">
+    <div class="sec-label">The path here</div>
+    <div class="timeline">
+      <div class="tl-row">
+        <div class="tl-when">Now</div>
+        <div class="tl-what">
+          <h3>Computational Biologist &amp; Data Scientist · MD Anderson</h3>
+          <div class="where">Department of Translational Molecular Pathology · since 2025</div>
+          <p>I wear several hats across the division: DPLM Computational Data Consultant, DPLM Computational Training Lead, and TMP T32 Fellowship Consultant — providing embedded bioinformatics across faculty research, leading computational training, and mentoring fellows.</p>
+          <p style="margin-top:8px">Recent research: a graph transformer predicting metastasis from AI-annotated phylogenetic trees in TRACERx lung adenocarcinoma; spatial transcriptomics and digital pathology of the tumor microenvironment; and AI surveillance for transfusion medicine.</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-when">2016 — 2023</div>
+        <div class="tl-what">
+          <h3>PhD · NCI T32 Fellow · MD Anderson</h3>
+          <div class="where">with Nicholas Navin, PhD</div>
+          <p>Developed single-cell DNA sequencing approaches for triple-negative breast cancer using multi-patient panels and computational phylogenetics; integrated scDNA/scRNA/scATAC to find actionable biomarkers in AML.</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-when">2013 — 2016</div>
+        <div class="tl-what">
+          <h3>Research Assistant · UT Health San Antonio</h3>
+          <div class="where">with Pei Wang, PhD</div>
+          <p>Designed bulk NGS pipelines profiling Hippo-pathway-disrupted pancreatic tumors; combined molecular biology and computation to study tumor and stem-cell biology.</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-when">2008 — 2013</div>
+        <div class="tl-what">
+          <h3>B.S. Chemistry · B.A. Physics · B.A. Philosophy</h3>
+          <div class="where">The University of Texas at Austin</div>
+          <p>Three degrees across the physical, life, and formal sciences — plus early biophysics research with laser optical tweezers and molecular motors.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="sec-label">Selected publications</div>
+    <div class="pubs">
+      <div class="pub">
+        <div class="pub-title"><span class="role">First author</span> — Delineating mutational lineages with single-cell DNA sequencing using multi-patient specific panels.</div>
+        <div class="pub-venue"><span class="j">Cell Genomics</span> · 2022</div>
+      </div>
+      <div class="pub">
+        <div class="pub-title"><span class="role">Co-first author</span> — Integrated genomic analysis of the ubiquitin pathway across cancer types.</div>
+        <div class="pub-venue"><span class="j">Cell Reports</span> · 2018</div>
+      </div>
+      <div class="pub">
+        <div class="pub-title"><span class="role">First author</span> — Predicting lung-cancer metastasis using evolution-aware graph transformers.</div>
+        <div class="pub-venue">In preparation</div>
+      </div>
+      <div class="pub">
+        <div class="pub-title"><span class="role">First author</span> — Spatial transcriptomics reveals the impact of carbon deposition in lung adenocarcinoma.</div>
+        <div class="pub-venue">In preparation</div>
+      </div>
+    </div>
+    <p class="body" style="margin-top:18px;font-size:14.5px">
+      Additional co-authored work in <em>Diabetologia</em>, <em>Regenerative Medicine</em>, and <em>Biochemistry Insights</em>. Full list on <a href="https://scholar.google.com/citations?user=CbjjLIgAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>.
+    </p>
+  </section>
+
+  <section>
+    <div class="sec-label">Toolkit</div>
+    <div class="facts">
+      <span class="fact"><strong>R</strong> &nbsp;tidyverse · expert</span>
+      <span class="fact"><strong>Python</strong> &nbsp;PyTorch · graph transformers</span>
+      <span class="fact"><strong>Single-cell</strong> &nbsp;DNA · RNA · ATAC</span>
+      <span class="fact"><strong>Spatial</strong> &nbsp;transcriptomics</span>
+      <span class="fact"><strong>AI</strong> &nbsp;CNN · GCN · image analysis</span>
+      <span class="fact"><strong>HPC</strong> &nbsp;Docker · Singularity · Kubernetes</span>
+      <span class="fact"><strong>Digital</strong> &nbsp;pathology</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Off the clock</div>
+    <div class="offhours">
+      <p>
+        Before genomics there was a tennis court and a music stand — a competitive junior tennis player and a <em>multi-instrumentalist</em> long before a scientist. I still think the best problem-solving borrows from both: the pattern-recognition of sport and the structure of music. The philosophy degree just gave me the vocabulary to argue about it.
+      </p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="sec-label">Get in touch</div>
+    <h2>Let's talk.</h2>
+    <p class="body" style="margin-bottom:22px">
+      Open to conversations about computational oncology, collaborations, and roles where rigorous data science meets real biological questions.
+    </p>
+    <div class="contact">
+      <a href="https://scholar.google.com/citations?user=CbjjLIgAAAAJ&hl=en" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l11 6 9-4.9V17h2V9M5 13.2v4L12 21l7-3.8v-4L12 17z"/></svg>
+        Scholar
+      </a>
+      <a href="mailto:jleighton@mdanderson.org">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        Email
+      </a>
+      <a href="https://www.linkedin.com/in/jakeleighton" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.2V9h3.4v1.6h.1c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.4H3.5V9h3.6v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/jakeleighton" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.youtube.com/@leightonlab" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6z"/></svg>
+        YouTube
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span class="foot-brand">Jake Leighton</span>
+    <span class="foot-meta">jakeleighton.com · Houston, TX</span>
+  </footer>
+
+</div>
+</body>
+</html>
